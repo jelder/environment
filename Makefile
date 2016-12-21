@@ -1,24 +1,23 @@
 ROOT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
-install: brew config
+install: config /usr/local/bin/brew tools
 
-config: bashrc bash_profile
+config: ~/.bashrc ~/.bash_profile
 
-brew: /usr/local/bin/brew
+/usr/local/bin/brew:
 	@/usr/bin/ruby -e "$(shell curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-bashrc: $(ROOT_DIR)/.bashrc
+~/.bashrc:
 	ln -s $(ROOT_DIR)/.bashrc ~/.bashrc
 
-bash_profile: $(ROOT_DIR)/.bash_profile
+~/.bash_profile:
 	ln -s $(ROOT_DIR)/.bash_profile ~/.bash_profile
 
-taps: taps_dupes
-
-taps_dupes: $(realpath /usr/local/Homebrew/Library/Taps/homebrew/homebrew-dupes)
+$(realpath /usr/local/Homebrew/Library/Taps/homebrew/homebrew-dupes):
 	brew tap homebrew/dupes
 
-tools: taps
+tools: $(realpath /usr/local/Homebrew/Library/Taps/homebrew/homebrew-dupes)
+	brew install bash-git-prompt
 	brew install grep --with-default-names
 	brew install binutils
 	brew install diffutils
