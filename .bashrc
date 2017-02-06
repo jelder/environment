@@ -66,6 +66,9 @@ eval $(dircolors)
 
 eval "$(direnv hook bash)"
 
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+[ -d /usr/local/etc/bash_completion.d ] && for f in /usr/local/etc/bash_completion.d/* ; do . $f ; done
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
 [ -f ~/.envrc ] && . ~/.envrc
+[ -f ~/.cargo/env ] && source ~/.cargo/env
+
+export PATH="$HOME/.yarn/bin:$PATH"

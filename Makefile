@@ -13,10 +13,9 @@ config: ~/.bashrc ~/.bash_profile
 ~/.bash_profile:
 	ln -s $(ROOT_DIR)/.bash_profile ~/.bash_profile
 
-$(realpath /usr/local/Homebrew/Library/Taps/homebrew/homebrew-dupes):
+tools:
 	brew tap homebrew/dupes
-
-tools: $(realpath /usr/local/Homebrew/Library/Taps/homebrew/homebrew-dupes)
+	brew install git
 	brew install bash-git-prompt
 	brew install grep --with-default-names
 	brew install binutils
@@ -27,4 +26,6 @@ tools: $(realpath /usr/local/Homebrew/Library/Taps/homebrew/homebrew-dupes)
 	brew install gnu-sed --with-default-names
 	brew install gnu-tar --with-default-names
 	brew install gnu-which --with-default-names
+	brew install docker-compose-completion
+	brew isntall launchctl-completion
 	brew install ack
