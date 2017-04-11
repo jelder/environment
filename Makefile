@@ -15,6 +15,7 @@ config: ~/.bashrc ~/.bash_profile
 
 tools:
 	brew tap homebrew/dupes
+	brew install coreutils
 	brew install git
 	brew install bash-git-prompt
 	brew install grep --with-default-names
@@ -27,5 +28,5 @@ tools:
 	brew install gnu-tar --with-default-names
 	brew install gnu-which --with-default-names
 	brew install docker-compose-completion
-	brew isntall launchctl-completion
+	brew install launchctl-completion
 	brew install ack
